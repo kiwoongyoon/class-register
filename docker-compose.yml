@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  www:
+    build: .
+    ports: 
+      - "80:80"
+    volumes:
+      - ./www:/var/www/html/
+    links:
+      - db:db
+  db:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=cnu
+      - MYSQL_USER=cnu
+      - MYSQL_PASSWORD=r912
+      - MYSQL_ROOT_PASSWORD=r912
+    volumes:
+      - ./db:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - MYSQL_ROOT_PASSWORD=r912
+    links:
+      - db:db

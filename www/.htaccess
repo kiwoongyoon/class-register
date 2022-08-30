@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /
+
+#Special case: api requests
+RewriteRule ^api/ api/RestApiController.php [L]
+ 
